@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29905.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PmxExport", "PmxExport.csproj", "{7583CA59-FBA3-474E-986F-C6982A1D9035}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7583CA59-FBA3-474E-986F-C6982A1D9035}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7583CA59-FBA3-474E-986F-C6982A1D9035}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7583CA59-FBA3-474E-986F-C6982A1D9035}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7583CA59-FBA3-474E-986F-C6982A1D9035}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D6A2EB40-4CDE-40C0-85E5-3C824B67426C}
+	EndGlobalSection
+EndGlobal
