@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using PmxLib;
 
 /**
@@ -90,5 +91,31 @@ public class PmxBuilder {
 		}
 
 		return msg;
+	}
+
+	/**
+	 * <summary>
+	 * Creates the PmxHeader.<br></br>
+	 * Should only be called after the models data has been fetched/prepared.
+	 * </summary>
+	 */
+	private void CreatePmxHeader() {
+		PmxElementFormat pmxElementFormat = new PmxElementFormat(2.1f);
+		pmxElementFormat.VertexSize = PmxElementFormat.GetUnsignedBufSize(pmxFile.VertexList.Count);
+
+		int max = int.MinValue;
+		for(int i = 0; i < pmxFile.BoneList.Count; i++) {
+			max = Math.Max(max, Math.Abs(pmxFile.BoneList[i].IK.LinkList.Count));
+		}
+		max = Math.Max(max, pmxFile.BoneList.Count);
+
+		pmxElementFormat.BoneSize = PmxElementFormat.GetSignedBufSize(max);
+		if(pmxElementFormat.BoneSize < 2) pmxElementFormat.BoneSize = 2;
+		pmxElementFormat.MorphSize = PmxElementFormat.GetUnsignedBufSize(pmxFile.MorphList.Count);
+		pmxElementFormat.MaterialSize = PmxElementFormat.GetUnsignedBufSize(pmxFile.MaterialList.Count);
+		pmxElementFormat.BodySize = PmxElementFormat.GetUnsignedBufSize(pmxFile.BodyList.Count);
+
+		PmxHeader pmxHeader = new PmxHeader(2.1f);
+		pmxFile.Header.FromElementFormat(pmxElementFormat);
 	}
 }
