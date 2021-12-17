@@ -1,4 +1,5 @@
-﻿using BepInEx;
+﻿using UnityEngine;
+using BepInEx;
 
 namespace PmxExport {
 	[BepInPlugin(GUID, NAME, VERSION)]
@@ -31,6 +32,12 @@ namespace PmxExport {
 			}
 
 			window.DrawWindow();
+		}
+
+		public void Update() {
+			if(Input.GetKeyDown(PmxExporterWindow.KEY)) {
+				window.Show();
+			}
 		}
 	}
 }
