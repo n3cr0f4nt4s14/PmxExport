@@ -80,7 +80,7 @@ public class PmxBuilder {
 
 	/**
 	* <summary>
-	* Builds the PMX-file.<br></br>
+	* Builds the pmx-file.<br></br>
 	* TODO: specify result message.
 	* </summary>
 	* <returns>The result message.</returns>
@@ -88,7 +88,7 @@ public class PmxBuilder {
 	public string BuildStart() {
 		string msg = CreateDirectories();
 		if(msg.Equals(MSG_SUCCESS)) {
-			//Only export the model if the directories could be created successfully.
+			//Only exports the model if the directories could be created successfully.
 			CreatePmxModelInfo();
 			CreatePmxHeader();
 			Save();
@@ -99,7 +99,7 @@ public class PmxBuilder {
 
 	/**
 	* <summary>
-	* Creates all needed directories for the PMX-file.
+	* Creates all needed directories for the pmx-file.
 	* </summary>
 	*/
 	private string CreateDirectories() {
@@ -116,6 +116,7 @@ public class PmxBuilder {
 			msg = e.ToString() + msg;
 		}
 
+		UnityEngine.Debug.Log("msg: " + msg);//TODO: Remove log command
 		return msg;
 	}
 
@@ -140,8 +141,6 @@ public class PmxBuilder {
 		pmxElementFormat.MorphSize = PmxElementFormat.GetUnsignedBufSize(pmxFile.MorphList.Count);
 		pmxElementFormat.MaterialSize = PmxElementFormat.GetUnsignedBufSize(pmxFile.MaterialList.Count);
 		pmxElementFormat.BodySize = PmxElementFormat.GetUnsignedBufSize(pmxFile.BodyList.Count);
-
-		PmxHeader pmxHeader = new PmxHeader(2.1f);
 		pmxFile.Header.FromElementFormat(pmxElementFormat);
 	}
 
@@ -167,6 +166,8 @@ public class PmxBuilder {
 	 * </summary>
 	 */
 	private void Save() {
+		UnityEngine.Debug.Log("Saving started...");//TODO: Remove log command
 		pmxFile.ToFile(GetSavePath() + GetFileName() + "\\" + GetFileName() + PMX_FILE_ENDING);
+		UnityEngine.Debug.Log("Saving finished.");//TODO: Remove log command
 	}
 }
