@@ -6,9 +6,6 @@
  * </summary>
  */
 public class PmxExportWindow {
-	private readonly Color WHITE = new Color(1f, 1f, 1f, 1f);
-	private readonly Color GREY = new Color(0.5f, 0.5f, 0.5f, 1f);
-
 	private const string TITLE = PmxExport.NAME + " " + PmxExport.VERSION;
 	private const string TEXT_LABEL_SAVE_PATH = "Save path";
 	private const string TEXT_LABEL_MODEL_NAME = "Model name";
@@ -76,10 +73,6 @@ public class PmxExportWindow {
 	* <param name="windowId">ID number of the window (can be any value as long as it is unique)</param>
 	*/
 	private void DoExporterWindow(int windowId) {
-		//https://docs.unity3d.com/ScriptReference/GUI.Window.html
-		//https://github.com/suiginsoft/COM3D2.ModelExportMMD/blob/master/COM3D2.ModelExportMMD.Gui/ModelExportWindow.cs
-		//https://github.com/suiginsoft/COM3D2.ModelExportMMD/blob/master/COM3D2.ModelExportMMD.Plugin/ModelExportPlugin.cs
-
 		PmxBuilder builder = PmxExport.GetInstance().GetPmxBuilder();
 
 		//Save path

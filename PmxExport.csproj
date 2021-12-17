@@ -123,6 +123,7 @@
   <ItemGroup>
     <None Include=".gitignore" />
     <None Include="README.md" />
+    <None Include="Resources.md" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Libraries\" />
