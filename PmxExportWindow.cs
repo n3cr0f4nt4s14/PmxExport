@@ -5,7 +5,7 @@
  * The PmxExportWindow.
  * </summary>
  */
-class PmxExportWindow {
+public class PmxExportWindow {
 	private readonly Color WHITE = new Color(1f, 1f, 1f, 1f);
 	private readonly Color GREY = new Color(0.5f, 0.5f, 0.5f, 1f);
 
@@ -34,7 +34,6 @@ class PmxExportWindow {
 
 	/** <summary>Indicates whether or no the export window should be shown.</summary> */
 	private bool showExportWindow;
-	private string savePath;
 
 	public PmxExportWindow() {
 		const int sizeHalf = SIZE_WINDOW / 2;
@@ -74,7 +73,8 @@ class PmxExportWindow {
 		//https://github.com/suiginsoft/COM3D2.ModelExportMMD/blob/master/COM3D2.ModelExportMMD.Plugin/ModelExportPlugin.cs
 
 		GUI.Label(labelSavePath, TEXT_LABEL_SAVE_PATH);
-		savePath = GUI.TextField(textFieldSavePath, savePath);
+		PmxBuilder builder = PmxExport.GetInstance().GetPmxBuilder();
+		builder.SetSavePath(GUI.TextField(textFieldSavePath, builder.GetSavePath()));
 
 		if(GUI.Button(buttonSave, TEXT_BUTTON_SAVE)) {
 
