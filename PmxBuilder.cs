@@ -118,4 +118,20 @@ public class PmxBuilder {
 		PmxHeader pmxHeader = new PmxHeader(2.1f);
 		pmxFile.Header.FromElementFormat(pmxElementFormat);
 	}
+
+	/**
+	 * <summary>
+	 * Creates the PmxModelInfo.<br></br><br></br>
+	 * Uses the current model name as specified by <see cref="GetModelName"/>.
+	 * </summary>
+	 */
+	private void CreatePmxModelInfo() {
+		//TODO: Add ability to specify the comment.
+		PmxModelInfo pmxModelInfo = new PmxModelInfo();
+		pmxModelInfo.ModelName = GetModelName();
+		pmxModelInfo.ModelNameE = GetModelName();
+		pmxModelInfo.Comment = "";
+		pmxModelInfo.CommentE = "";
+		pmxFile.ModelInfo.FromModelInfo(pmxModelInfo);
+	}
 }
