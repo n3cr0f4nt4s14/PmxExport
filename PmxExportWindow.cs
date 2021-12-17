@@ -90,7 +90,7 @@ public class PmxExportWindow {
 		builder.SetModelName(GUI.TextField(textFieldModelName, builder.GetModelName()));
 
 		if(GUI.Button(buttonSave, TEXT_BUTTON_SAVE)) {
-
+			builder.BuildStart();
 		}
 		else if(GUI.Button(buttonCancle, TEXT_BUTTON_CANCLE)) {
 			showExportWindow = false;
