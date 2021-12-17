@@ -5,23 +5,31 @@ using PmxLib;
 /**
 * <summary>
 * The PmxBuilder.<br></br>
-* Responsible for building (constructing and saving) the PMX-file.
+* Responsible for building (constructing and saving) the pmx-file.
 * </summary>
 */
 public class PmxBuilder {
-	/** <summary>The default file path, where the PMX-file will be saved.</summary> */
+	/** <summary>The default file path, where the pmx-file will be saved.</summary> */
 	public const string DEFAULT_SAVE_PATH = "C:\\koikatsu_models\\";
+	/** <summary>The default file name, under wich the pmx-file will be saved.</summary> */
+	public const string DEFAULT_FILE_NAME = "New model";
+	/** <summary>The pmx-file file ending.</summary> */
+	public const string PMX_FILE_ENDING = ".pmx";
 	/** <summary>The success message, that is returned if the model could be exported without issues.</summary> */
 	public const string MSG_SUCCESS = "\n";
-	/** <summary>The current file path, where the PMX-file will be saved.</summary> */
+
+	/** <summary>The current file path, where the pmx-file will be saved.</summary> */
 	private string savePath;
+	/** <summary>The name of the pmx-file.</summary> */
+	private string fileName;
 	/** <summary>The name of the model.</summary> */
 	private string modelName;
 	Pmx pmxFile;
 
 	public PmxBuilder() {
 		this.savePath = DEFAULT_SAVE_PATH;
-		this.modelName = "New model";
+		this.fileName = DEFAULT_FILE_NAME;
+		this.modelName = "";
 		this.pmxFile = new Pmx();
 	}
 
@@ -56,6 +64,21 @@ public class PmxBuilder {
 	}
 
 	/**
+	 * <summary>Returns the file name.</summary>
+	 */
+	public string GetFileName() {
+		return fileName;
+	}
+
+	/**
+	 * <summary>Sets the file name.</summary>
+	 * <param name="fileName">The new file name</param>
+	 */
+	public void SetFileName(string fileName) {
+		this.fileName = fileName;
+	}
+
+	/**
 	* <summary>
 	* Builds the PMX-file.<br></br>
 	* TODO: specify result message.
@@ -80,7 +103,7 @@ public class PmxBuilder {
 		string msg = MSG_SUCCESS;
 
 		try {
-			string path = savePath + modelName + "\\";
+			string path = GetSavePath() + GetFileName() + "\\";
 			Directory.CreateDirectory(path);
 			Directory.CreateDirectory(path + "tex\\");
 			Directory.CreateDirectory(path + "sph\\");
@@ -133,5 +156,14 @@ public class PmxBuilder {
 		pmxModelInfo.Comment = "";
 		pmxModelInfo.CommentE = "";
 		pmxFile.ModelInfo.FromModelInfo(pmxModelInfo);
+	}
+
+	/**
+	 * <summary>
+	 * Saves the pmx-file.
+	 * </summary>
+	 */
+	private void Save() {
+		pmxFile.ToFile(GetSavePath() + GetFileName() + "\\" + GetFileName() + PMX_FILE_ENDING);
 	}
 }
