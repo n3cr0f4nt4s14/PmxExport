@@ -10,10 +10,11 @@ class PmxExportWindow {
 	private readonly Color GREY = new Color(0.5f, 0.5f, 0.5f, 1f);
 
 	private const string TITLE = PmxExport.NAME + " " + PmxExport.VERSION;
-	private const string BUTTON_SAVE_TEXT = "Save";
-	private const string BUTTON_CANCLE_TEXT = "Cancle";
+	private const string TEXT_BUTTON_SAVE = "Save";
+	private const string TEXT_BUTTON_CANCLE = "Cancle";
+
 	private const int SIZE_WINDOW = 500;
-	private const int MARGIN_PX = 18;
+	private const int MARGIN = 20;
 	/** <summary>The key that opens the export window.</summary> */
 	public const KeyCode KEY = KeyCode.F8;
 
@@ -27,9 +28,16 @@ class PmxExportWindow {
 	private bool showExportWindow;
 
 	public PmxExportWindow() {
-		window = new Rect(Screen.width / 2, Screen.height / 2, SIZE_WINDOW, SIZE_WINDOW);
-		//buttonSave = new Rect(...);
-		buttonCancle = new Rect(MARGIN_PX, SIZE_WINDOW - MARGIN_PX, SIZE_WINDOW - 2*MARGIN_PX,MARGIN_PX);
+		const int sizeHalf = SIZE_WINDOW / 2;
+		window = new Rect(Screen.width / 2 - sizeHalf, Screen.height / 2 - sizeHalf, SIZE_WINDOW, SIZE_WINDOW);
+
+		//Folder, Browse, Name, Format, Save texture, Save position, Apply T-pose, Save, Close
+
+		//Cancle and save button layout is calculated from the bottom of the window.
+		const int buttonWidth = SIZE_WINDOW - 2 * MARGIN;
+		buttonCancle = new Rect(MARGIN, buttonWidth, buttonWidth, MARGIN);
+		buttonSave = new Rect(MARGIN, buttonCancle.y - 2 * MARGIN, buttonWidth, MARGIN);
+
 		showExportWindow = false;
 	}
 
@@ -54,10 +62,10 @@ class PmxExportWindow {
 		//https://github.com/suiginsoft/COM3D2.ModelExportMMD/blob/master/COM3D2.ModelExportMMD.Gui/ModelExportWindow.cs
 		//https://github.com/suiginsoft/COM3D2.ModelExportMMD/blob/master/COM3D2.ModelExportMMD.Plugin/ModelExportPlugin.cs
 
-		/*if(GUI.Button(buttonSave, BUTTON_SAVE_TEXT)) {
+		if(GUI.Button(buttonSave, TEXT_BUTTON_SAVE)) {
 
 		}
-		else */if(GUI.Button(buttonCancle, BUTTON_CANCLE_TEXT)) {
+		else if(GUI.Button(buttonCancle, TEXT_BUTTON_CANCLE)) {
 			showExportWindow = false;
 		}
 	}
