@@ -10,6 +10,8 @@ using PmxLib;
 public class PmxBuilder {
 	/** <summary>The default file path, where the PMX-file will be saved.</summary> */
 	public const string DEFAULT_SAVE_PATH = "C:\\koikatsu_models\\";
+	/** <summary>The success message, that is returned if the model could be exported without issues.</summary> */
+	public const string MSG_SUCCESS = "\n";
 	/** <summary>The current file path, where the PMX-file will be saved.</summary> */
 	private string savePath;
 	/** <summary>The name of the model.</summary> */
@@ -60,7 +62,10 @@ public class PmxBuilder {
 	* <returns>The result message.</returns>
 	*/
 	public string BuildStart() {
-		string msg = CreateDirectories("TODO");
+		string msg = CreateDirectories();
+		if(msg.Equals(MSG_SUCCESS)) {
+			//Only export the model if the directories could be created successfully.
+		}
 
 		return msg;
 	}
@@ -70,12 +75,15 @@ public class PmxBuilder {
 	* Creates all needed directories for the PMX-file.
 	* </summary>
 	*/
-	private string CreateDirectories(string path) {
-		string msg = "\n";
+	private string CreateDirectories() {
+		string msg = MSG_SUCCESS;
 
 		try {
+			string path = savePath + modelName + "\\";
 			Directory.CreateDirectory(path);
-			//TODO:
+			Directory.CreateDirectory(path + "tex\\");
+			Directory.CreateDirectory(path + "sph\\");
+			Directory.CreateDirectory(path + "toon\\");
 		}
 		catch(IOException e) {
 			msg = e.ToString() + msg;
