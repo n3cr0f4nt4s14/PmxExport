@@ -2,7 +2,7 @@
 
 namespace PmxExport {
 	[BepInPlugin(GUID, NAME, VERSION)]
-	public class Main : BaseUnityPlugin {
+	public class PmxExporter : BaseUnityPlugin {
 		/**
 		 * <summary>
 		 * The pulugin's globally unique id.<br></br>
@@ -22,5 +22,15 @@ namespace PmxExport {
 		 * </summary>
 		 */
 		private PmxBuilder builder;
+		/** <summary>The PmxExportWindow.</summary> */
+		private PmxExporterWindow window;
+
+		public void OnGUI() {
+			if(window == null) {
+				window = new PmxExporterWindow();
+			}
+
+			window.DrawWindow();
+		}
 	}
 }
