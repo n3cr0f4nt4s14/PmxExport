@@ -89,6 +89,9 @@ public class PmxBuilder {
 		string msg = CreateDirectories();
 		if(msg.Equals(MSG_SUCCESS)) {
 			//Only export the model if the directories could be created successfully.
+			CreatePmxModelInfo();
+			CreatePmxHeader();
+			Save();
 		}
 
 		return msg;
