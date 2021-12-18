@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using PmxLib;
 
@@ -25,6 +26,13 @@ public class PmxBuilder {
 	/** <summary>The name of the model.</summary> */
 	private string modelName;
 	Pmx pmxFile;
+
+	/**
+	 * TODO:
+	 * - Used in #CreateBoneList() for the first time.
+	 * - can this be const?
+	 */
+	private int scale = 12;
 
 	public PmxBuilder() {
 		this.savePath = DEFAULT_SAVE_PATH;
@@ -169,5 +177,19 @@ public class PmxBuilder {
 		UnityEngine.Debug.Log("Saving started...");//TODO: Remove log command
 		pmxFile.ToFile(GetSavePath() + GetFileName() + "\\" + GetFileName() + PMX_FILE_ENDING);
 		UnityEngine.Debug.Log("Saving finished.");//TODO: Remove log command
+	}
+
+	private void CreateBoneList() {
+		UnityEngine.Transform transform = UnityEngine.GameObject.Find("BodyTop").transform;
+		List<UnityEngine.Transform> list = new List<UnityEngine.Transform>();
+		UnityEngine.Transform[] componentsInChildren = transform.GetComponentsInChildren<UnityEngine.Transform>();
+		for(int i = 0; i < componentsInChildren.Length; i++) {
+			PmxBone pmxBone = new PmxBone();
+			pmxBone.Name = componentsInChildren[i].name;
+			pmxBone.Parent = list.IndexOf(componentsInChildren[i].parent);
+			UnityEngine.Vector3 position = componentsInChildren[i].transform.position * (float) scale;
+			list.Add(componentsInChildren[i]);
+			pmxFile.BoneList.Add(pmxBone);
+		}
 	}
 }
