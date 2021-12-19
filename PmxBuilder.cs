@@ -100,9 +100,25 @@ public class PmxBuilder {
 			CreatePmxModelInfo();
 			CreatePmxHeader();
 			Save();
+
+			_DELETE_TEST();
 		}
 
 		return msg;
+	}
+
+	/**
+	 * Test method that logs all GameObjects to a file.
+	 * 
+	 * Used to see what GameObjects make up the character in the character maker.
+	 */
+	private void _DELETE_TEST() {
+		using(StreamWriter outputFile = new StreamWriter(GetSavePath() + "_DELETE_TEST.txt")) {
+			UnityEngine.GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<UnityEngine.GameObject>();
+			foreach(object go in allObjects) {
+				outputFile.WriteLine(go.ToString());
+			}
+		}
 	}
 
 	/**
