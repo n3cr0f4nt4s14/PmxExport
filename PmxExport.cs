@@ -2,6 +2,7 @@
 using BepInEx;
 
 [BepInPlugin(GUID, NAME, VERSION)]
+[BepInDependency(KKAPI.KoikatuAPI.GUID, KKAPI.KoikatuAPI.VersionConst)]
 public class PmxExport : BaseUnityPlugin {
 	/** <summary>The pulugin's globally unique id.</summary> */
 	public const string GUID = "com.n3cr0f4nt4s14.pmxexport";
